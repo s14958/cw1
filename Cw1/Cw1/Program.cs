@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -9,10 +10,11 @@ namespace Cw1
     {
         static async Task Main(string[] args)
         {
-            var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync("https://www.pja.edu.pl/");
+            string pageUrl = args[0];
 
-            
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(pageUrl);
+
             if (response.IsSuccessStatusCode)
             {
                 var html = await response.Content.ReadAsStringAsync();
